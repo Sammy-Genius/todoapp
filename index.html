@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoapp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./FONTAWESOME/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3.0.4"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>Todo App</h1>
+
+            <div v-if = "!isEditing">
+                <input  type="text" placeholder="what do you want to do today?" v-model = "todo" @keyup.enter = "addTodo">
+                <button class="add" @click = "addTodo">+</button>
+            </div>
+
+            <div v-else>
+                <input type="text" placeholder="update todo" v-model = "todo" @keyup.enter = "updateTodo">
+                <button class="update" @click = "updateTodo">update</button>
+           </div>
+
+            <ol>
+                <li v-for = "(todo, index) in todos">
+                    {{todo}}
+
+                    <input type="checkbox">
+                    <i class="far fa-edit" @click = "editTodo(index, todo)"></i>
+                    <i class="far fa-trash-alt" @click = "deleteTodo(index)"></i>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
